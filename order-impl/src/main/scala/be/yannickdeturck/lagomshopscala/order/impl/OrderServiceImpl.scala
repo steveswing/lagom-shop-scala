@@ -42,7 +42,7 @@ class OrderServiceImpl(registry: PersistentEntityRegistry, orderRepository: Orde
     val orderEntityRef = registry.refFor[OrderEntity](id.toString)
     orderEntityRef.ask(GetOrder).map {
       case Some(order) => convertOrder(order)
-      case None => throw NotFound(s"Order $id not found");
+      case None => throw NotFound(s"Order $id not found")
     }
   }
 

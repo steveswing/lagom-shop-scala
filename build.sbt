@@ -2,16 +2,17 @@ organization in ThisBuild := "be.yannickdeturck"
 version in ThisBuild := "1.0-SNAPSHOT"
 
 // the Scala version that will be used for cross-compiled libraries
-scalaVersion in ThisBuild := "2.12.4"
+scalaVersion in ThisBuild := "2.12.6"
 
 val playJsonDerivedCodecs = "org.julienrf" %% "play-json-derived-codecs" % "4.0.0"
-val macwire = "com.softwaremill.macwire" %% "macros" % "2.2.5" % "provided"
-val scalaTest = "org.scalatest" %% "scalatest" % "3.0.1" % Test
-val cassandraDriverExtras = "com.datastax.cassandra" % "cassandra-driver-extras" % "3.0.0" // Adds extra codecs
+val macwire = "com.softwaremill.macwire" %% "macros" % "2.3.1" % "provided"
+val scalaTest = "org.scalatest" %% "scalatest" % "3.0.5" % Test
+val cassandraDriverExtras = "com.datastax.cassandra" % "cassandra-driver-extras" % "3.5.0" // Adds extra codecs
+val webjarsFoundation = "org.webjars" % "foundation" % "6.4.3"
+val webjarsFoundationIconFonts = "org.webjars" % "foundation-icon-fonts" % "d596a3cfb3"
 
 lazy val `lagom-shop-scala` = (project in file("."))
-  .aggregate(itemApi, itemImpl,
-    frontend)
+  .aggregate(itemApi, itemImpl, orderApi, orderImpl, frontend)
   .settings(commonSettings: _*)
 
 lazy val common = (project in file("common"))
@@ -90,10 +91,9 @@ lazy val frontend = (project in file("frontend"))
       lagomScaladslKafkaClient,
       macwire,
       scalaTest,
-      "org.webjars" % "foundation" % "6.2.3",
-      "org.webjars" % "foundation-icon-fonts" % "d596a3cfb3"
+      webjarsFoundation,
+      webjarsFoundationIconFonts
     ),
-    EclipseKeys.preTasks := Seq(compile in Compile),
     httpIngressPaths := Seq("/")
   )
 

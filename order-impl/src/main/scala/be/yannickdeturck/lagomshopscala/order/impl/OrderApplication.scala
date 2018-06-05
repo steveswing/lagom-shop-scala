@@ -3,8 +3,6 @@ package be.yannickdeturck.lagomshopscala.order.impl
 import be.yannickdeturck.lagomshopscala.item.api.ItemService
 import be.yannickdeturck.lagomshopscala.order.api.OrderService
 import com.lightbend.lagom.internal.client.CircuitBreakerMetricsProviderImpl
-import com.lightbend.lagom.scaladsl.api.ServiceLocator
-import com.lightbend.lagom.scaladsl.api.ServiceLocator.NoServiceLocator
 import com.lightbend.lagom.scaladsl.broker.kafka.LagomKafkaComponents
 import com.lightbend.lagom.scaladsl.devmode.LagomDevModeComponents
 import com.lightbend.lagom.scaladsl.persistence.cassandra.CassandraPersistenceComponents
